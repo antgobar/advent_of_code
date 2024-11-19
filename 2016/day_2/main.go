@@ -15,5 +15,5 @@ func ReadTextFile(path string) []string {
 }
 
 func main() {
-	ReadTextFile("day_2_test.txt")
+	data := ReadTextFile("day_2_test.txt")
 }
