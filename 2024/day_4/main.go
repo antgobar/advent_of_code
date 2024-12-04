@@ -79,7 +79,7 @@ func getValidWordsInDirections(array [][]string, x, y int, searchWord string) in
 }
 
 func main() {
-	data := ReadFile("test2.txt")
+	data := ReadFile("input.txt")
 	const searchWord = "XMAS"
 	totalCount := 0
 	for y := range data {
