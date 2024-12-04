@@ -13,7 +13,7 @@ func ReadFile(path string) [][]string {
 	}
 
 	lines := strings.Split(string(content), "\n")
-	
+
 	var data [][]string
 	for _, line := range lines {
 		chars := strings.Split(line, "")
@@ -24,7 +24,7 @@ func ReadFile(path string) [][]string {
 
 func getValidWordsInDirections(array [][]string, x, y int, searchWord string) int {
 	size := len(searchWord)
-	
+
 	var northWest []string
 	var north []string
 	var northEast []string
@@ -35,8 +35,8 @@ func getValidWordsInDirections(array [][]string, x, y int, searchWord string) in
 	var west []string
 
 	hasSpaceNorth := y >= size-1
-	hasSpaceEast := x < len(array[y])-size
-	hasSpaceSouth := y < len(array)-size
+	hasSpaceEast := x < len(array[y])-size+1
+	hasSpaceSouth := y < len(array)-size+1
 	hasSpaceWest := x >= size-1
 
 	for i := 0; i < size; i++ {
