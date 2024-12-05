@@ -49,10 +49,10 @@ func main() {
 
 	nums1 := extractMulMatches(data)
 	totalProblem1 := mulCompute(nums1)
-	fmt.Println("Problem 1: ", totalProblem1)
+	fmt.Println("Problem 1:", totalProblem1)
 
 	cleaned := cleanDonts(data)
 	nums2 := extractMulMatches(cleaned)
 	totalProblem2 := mulCompute(nums2)
-	fmt.Println("Problem 2: ", totalProblem2)
+	fmt.Println("Problem 2:", totalProblem2)
 }

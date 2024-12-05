@@ -105,6 +105,6 @@ func main() {
 
 	}
 
-	fmt.Println("Problem 1: ", safeReportsProblem1)
-	fmt.Println("Problem 2: ", safeReportsProblem2)
+	fmt.Println("Problem 1:", safeReportsProblem1)
+	fmt.Println("Problem 2:", safeReportsProblem2)
 }

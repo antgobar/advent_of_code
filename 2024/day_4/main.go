@@ -121,6 +121,6 @@ func main() {
 		}
 	}
 
-	fmt.Println("Problem 1: ", totalCount1)
-	fmt.Println("Problem 2: ", totalCount2)
+	fmt.Println("Problem 1:", totalCount1)
+	fmt.Println("Problem 2:", totalCount2)
 }
