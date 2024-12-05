@@ -22,7 +22,7 @@ func ReadFile(path string) [][]string {
 	return data
 }
 
-func getValidWordsInDirections(array [][]string, x, y int, searchWord string) int {
+func getValidWordsInDirections(array [][]string, x, y int, searchWord string) (int, int) {
 	size := len(searchWord)
 
 	var northWest []string
@@ -65,29 +65,62 @@ func getValidWordsInDirections(array [][]string, x, y int, searchWord string) in
 			west = append(west, array[y][x-i])
 		}
 	}
-
-	directions := [][]string{northWest, north, northEast, east, southEast, south, southWest, west}
-
-	count := 0
+	orthogonals := [][]string{north, east, west, south}
+	diagonals := [][]string{northWest, northEast, southEast, southWest}
+	directions := append(orthogonals, diagonals...)
+	count1 := 0
 	for _, direction := range directions {
 		word := strings.Join(direction, "")
 		if word == searchWord {
-			count++
+			count1++
 		}
 	}
-	return count
+	size = 2
+	hasSpaceNorth = y >= size-1
+	hasSpaceEast = x < len(array[y])-size+1
+	hasSpaceSouth = y < len(array)-size+1
+	hasSpaceWest = x >= size-1
+
+	count2 := 0
+	if array[y][x] == "A" && hasSpaceNorth && hasSpaceEast && hasSpaceSouth && hasSpaceWest {
+		if diagonalMatch(array, x, y, "M", "S", "M", "S") {
+			count2++
+		}
+		if diagonalMatch(array, x, y, "S", "M", "M", "S") {
+			count2++
+		}
+		if diagonalMatch(array, x, y, "M", "S", "S", "M") {
+			count2++
+		}
+		if diagonalMatch(array, x, y, "S", "M", "S", "M") {
+			count2++
+		}
+	}
+
+	return count1, count2
+}
+
+func diagonalMatch(array [][]string, x, y int, nw, se, ne, sw string) bool {
+	if string(array[y-1][x-1]) == nw && string(array[y+1][x+1]) == se &&
+		string(array[y-1][x+1]) == ne && string(array[y+1][x-1]) == sw {
+		return true
+	}
+	return false
 }
 
 func main() {
 	data := ReadFile("input.txt")
 	const searchWord = "XMAS"
-	totalCount := 0
+	totalCount1 := 0
+	totalCount2 := 0
 	for y := range data {
 		for x := range data[y] {
-			totalCount += getValidWordsInDirections(data, x, y, searchWord)
+			count1, count2 := getValidWordsInDirections(data, x, y, searchWord)
+			totalCount1 += count1
+			totalCount2 += count2
 		}
 	}
 
-	fmt.Println("Problem 1: ", totalCount)
-
+	fmt.Println("Problem 1: ", totalCount1)
+	fmt.Println("Problem 2: ", totalCount2)
 }
