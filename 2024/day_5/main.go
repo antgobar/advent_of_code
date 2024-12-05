@@ -38,12 +38,12 @@ type Updates []Update
 type Update []int
 
 func (rule Rule) IsFollowed(update Update) bool {
-	first := update.GetIndexAtValue(rule.first)
-	second := update.GetIndexAtValue(rule.second)
-	if first == -1 || second == -1 {
+	firstIndex := update.GetIndexAtValue(rule.first)
+	secondIndex := update.GetIndexAtValue(rule.second)
+	if firstIndex == -1 || secondIndex == -1 {
 		return true
 	}
-	if second > first {
+	if secondIndex > firstIndex {
 		return true
 	}
 	return false
@@ -110,10 +110,14 @@ func ReadFile(path string) (Rules, Updates) {
 func main() {
 	rules, updates := ReadFile("input.txt")
 	sumProblem1 := 0
+	sumProblem2 := 0
 	for _, update := range updates {
 		if update.FollowsAllRules(rules) {
 			sumProblem1 += update.Middle()
+		} else {
+			sumProblem2 += 0
 		}
 	}
 	print("Problem 1:", sumProblem1)
+	print("Problem 2:", sumProblem2)
 }
