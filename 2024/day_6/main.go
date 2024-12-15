@@ -69,10 +69,6 @@ func (g Guard) IsInGrid() bool {
 	return true
 }
 
-func (guard Guard) NextStep(grid Grid) Guard {
-	return guard
-}
-
 func main() {
 	grid := ReadFile("test.txt")
 	guard := Guard{grid, grid.StartingPoint(), "^"}
